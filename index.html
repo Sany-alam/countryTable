@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>countrytable</title>
+  <link rel="stylesheet" href="assets/index.css" />
+  <link rel="stylesheet" href="assets/sideNav.css" />
+  <link rel="stylesheet" href="assets/open-iconic-master\font\css\open-iconic.css" />
+  <link rel="stylesheet" href="assets/bootstrap.min.css" />
+
+  <script src="assets/jquery-3.6.0.min.js"></script>
+  <script src="assets/bootstrap.min.js"></script>
+  <script src="assets/popper.min.js"></script>
+  <script src="assets/index.js"></script>
+</head>
+
+<body>
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <ul class="nav flex-column" id="cart-list">
+      
+    </ul>
+  </div>
+
+  <div id="main">
+    <nav class="navbar navbar-light bg-light">
+      <div class="container-fluid">
+        <div class="form-group">
+          <label for="theme">Theme</label>
+          <select class="form-control" id="theme">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <input type="search" class="form-control" id="search" placeholder="Search" />
+        </div>
+        <button onclick="openNav()" type="button" class="btn btn-primary">
+          <span class="oi" data-glyph="cart"></span>
+          <span id="count-cart"></span>
+        </button>
+      </div>
+    </nav>
+
+    <table class="table" id="table">
+      <thead>
+        <tr>
+          <th scope="col">Flag</th>
+          <th><span id="name">Name</span></th>
+          <th><span id="population">Population</span></th>
+          <th><span id="region">Region</span></th>
+          <th>Language</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="table-data">
+        
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
