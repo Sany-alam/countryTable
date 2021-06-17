@@ -88,7 +88,8 @@ $(function () {
 
   $("#table").on("click", function (el) {
     document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginRight = "0";
+    // document.getElementById("main").style.marginRight = "0";
+    document.getElementById("main").style.opacity = "1";
   })
 
 
@@ -219,13 +220,15 @@ function deleteCartItem(index) {
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
   document.getElementById("mySidenav").style.width = "320px";
-  document.getElementById("main").style.marginRight = "320px";
+  // document.getElementById("main").style.marginRight = "320px";
+  document.getElementById("main").style.opacity = "0.8";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("main").style.marginRight = "0";
+  // document.getElementById("main").style.marginRight = "0";
+  document.getElementById("main").style.opacity = "1";
 }
 
 // document.getElementById("mySidenav").appendChild("");
