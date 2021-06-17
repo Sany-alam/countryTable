@@ -18,88 +18,67 @@
     <div class="bg">
         <h1 id="name" class="p-3 text-center"></h1>
         <div>
-            <div class="card m-auto" style="width: 350px;">
-                <img style="height: 140px;" class="card-img-top" id="flag" src="" alt="Card image cap">
+            <div class="card">
+                <div class="card-img-top" id="flag"></div>
+                <!-- <img style="height: 140px;" class="" id="flag" src="" alt="Card image cap"> -->
                 <div class="card-body">
-                    <div id="accordion">
+                  <nav class="nav flex-column">
 
-                        <div class="">
-                          <div class="" id="headingOne">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                Other names
-                              </button>
-                            </h5>
-                          </div>
-                      
-                          <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="">
-                                <ol id="other-names"></ol>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="">
-                          <div class="" id="headingTwo">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Region
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="" id="region">
-                                
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="">
-                          <div class="" id="headingThree">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                Borders
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="">
-                                <ol id="borders"></ol>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="">
-                          <div class="" id="headingFour">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                Currencies
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
-                            <div class="">
-                                <ol id="currencies"></ol>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="">
-                          <div class="" id="headingFive">
-                            <h5 class="mb-0">
-                              <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                                Languages
-                              </button>
-                            </h5>
-                          </div>
-                          <div id="collapseFive" class="collapse" aria-labelledby="headingFive" data-parent="#accordion">
-                            <div class="">
-                                <ol id="languages"></ol>
-                            </div>
-                          </div>
-                        </div>
-
+                    <div class="item" id="headingOne" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <span class="oi" data-glyph="caret-right"></span>
+                      <p>Other names</p>
+                      <span class="oi" data-glyph="chevron-bottom"></span>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne">
+                      <div class="">
+                          <ol id="other-names"></ol>
                       </div>
+                    </div>
+
+                    <div class="item" id="headingTwo" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      <span class="oi" data-glyph="caret-right"></span>
+                      <p>Region</p>
+                      <span class="oi" data-glyph="chevron-bottom"></span>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo">
+                      <div class="" id="region">
+                      </div>
+                    </div>
+
+                    <div class="item" id="headingThree" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      <span class="oi" data-glyph="caret-right"></span>
+                      <p>Borders</p>
+                      <span id="headingThreeIcon" class="oi" data-glyph="chevron-bottom"></span>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree">
+                      <div class="">
+                          <ol id="borders"></ol>
+                      </div>
+                    </div>
+
+                    <div class="item" id="headingFour" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                      <span class="oi" data-glyph="caret-right"></span>
+                      <p>Currencies</p>
+                      <span class="oi" data-glyph="chevron-bottom"></span>
+                    </div>
+                    <div id="collapseFour" class="collapse" aria-labelledby="headingFour">
+                      <div class="">
+                          <ol id="currencies"></ol>
+                      </div>
+                    </div>
+
+                    <div class="item" id="headingFive" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                      <span class="oi" data-glyph="caret-right"></span>
+                      <p>Languages</p>
+                      <span class="oi" data-glyph="chevron-bottom"></span>
+                    </div>
+                    <div id="collapseFive" class="collapse" aria-labelledby="headingFive">
+                      <div class="">
+                          <ol id="languages"></ol>
+                      </div>
+                    </div>
+                  </nav>
+
                 </div>
                 <h1 class="text-center">
                   <a class="btn btn-light" href="index.html">Back</a>

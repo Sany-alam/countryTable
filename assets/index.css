@@ -1,3 +1,13 @@
+table.table>thead{
+    height: 90px;
+}
+table.table-dark>tbody>tr{
+    background-color: rgb(66, 66, 66);
+}
+table.table-light>thead>tr{
+    background: rgb(25, 118, 210);
+    color: #fff;
+}
 table#table>thead>tr>th{
     vertical-align: middle;text-align: center;width: 20%;
 }
