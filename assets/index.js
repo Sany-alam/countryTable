@@ -86,6 +86,11 @@ $(function () {
     getData(all)
   })
 
+  $("#table").on("click", function (el) {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginRight = "0";
+  })
+
 
 });
 
