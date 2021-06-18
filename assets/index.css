@@ -11,12 +11,12 @@ table.table-light>thead>tr{
     background: rgb(25, 118, 210);
     color: #fff;
 }
-table#table>thead>tr>th{
+table.table>thead>tr>th{
     vertical-align: middle;text-align: center;width: 20%;
 }
-table#table>tbody>tr>td{
+table.table>tbody>tr>td{
     vertical-align: middle;text-align: center;width: 20%;
 }
-table#table>thead>tr>th:nth-child(2)>span,table#table>thead>tr>th:nth-child(3)>span,table#table>thead>tr>th:nth-child(4)>span{
+table.table>thead>tr>th:nth-child(2)>span,table.table>thead>tr>th:nth-child(3)>span,table.table>thead>tr>th:nth-child(4)>span{
     cursor: pointer;
 }

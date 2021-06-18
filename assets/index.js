@@ -1,126 +1,109 @@
-$(function () {
-  theme();
-  gettingData();
-  countingCart();
-  cartList();
-  var reversedName = false;
-  var reversedpopulation = false;
-  var reversedRegion = false;
+var reversedRegion = false;
+var reversedName = false;
+var reversedpopulation = false;
 
-  $("#theme").on("change", function () {
-    changing = $("#theme").val() === "light" ? "dark" : "light";
-    localStorage.setItem("Theme", $("#theme").val());
-    $("#table")
-      .addClass("table-" + $("#theme").val())
-      .removeClass("table-" + changing);
-  });
+theme();
+gettingData();
+countingCart();
+cartList();
 
-  $("#name").click(function () {
-    if (!reversedName) {
-      data = JSON.parse(localStorage.getItem("data")).reverse();
-    }else{
-      data = JSON.parse(localStorage.getItem("data")).reverse().reverse();
-    }
-    getData(data)
-    if (reversedName) {
-      reversedName = false;
-    }else{
-      reversedName = true;
-    }
-  })
-
-  $("#population").click(function () {
-    var data = JSON.parse(localStorage.getItem("data"))
-    if (!reversedpopulation) {
-      data.sort((a,b) => a.population - b.population)
-      reversedpopulation = true;
-    }else{
-      data.sort((a,b) => b.population - a.population)
-      reversedpopulation = false;
-    }
-    getData(data)
-  })
-
-  $("#region").click(function () {
-    var data = JSON.parse(localStorage.getItem("data"))
-    if (!reversedRegion) {
-      reversedRegion = true
-      data.sort(function(a,b){
-        regionA = a.region.toUpperCase()
-        regionB = b.region.toUpperCase()
-        if (regionA<regionB) {
-          return -1
-        }
-        if(regionA>regionB){
-          return 1
-        }
-        return 0
-      })
-    }else{
-      reversedRegion = false
-      data.sort(function(a,b){
-        regionA = a.region.toUpperCase()
-        regionB = b.region.toUpperCase()
-        if (regionA<regionB) {
-          return 1
-        }
-        if(regionA>regionB){
-          return -1
-        }
-        return 0
-      })
-    }
-    getData(data)
-  })
-
-  $("#search").keyup(function() {
-    var all = '';
-    data = JSON.parse(localStorage.getItem("data"))
-    if ($(this).val().length > 0) {
-      all = data.filter(function(country) {
-        return country.name.toLowerCase().includes($("#search").val()) || country.name.toUpperCase().includes($("#search").val())
-      })
-    }else{
-      all = data
-    }
-    getData(all)
-  })
-
-  $("#table").on("click", function (el) {
-    document.getElementById("mySidenav").style.width = "0";
-    // document.getElementById("main").style.marginRight = "0";
-    document.getElementById("main").style.opacity = "1";
-  })
-
-
+document.getElementById("theme").addEventListener("change",function () {
+  const theme = this.value;
+  changing = theme === "light" ? "dark" : "light";
+  localStorage.setItem("Theme", theme);
+  document.querySelector("table").classList.add("table-" + theme);
+  document.querySelector("table").classList.remove("table-" + changing);
 });
 
 function theme() {
-  if (localStorage.getItem("Theme") !== null) {
-    var theme = localStorage.getItem("Theme");
-    $("#table").addClass("table-" + theme);
-    $("#theme").val(theme);
-  } else {
-    var theme = "dark";
-    localStorage.setItem("Theme", theme);
-    $("#table").addClass("table-" + theme);
-    $("#theme").val(theme);
-  }
+  var theme = localStorage.getItem("Theme") !== null?localStorage.getItem("Theme"):localStorage.setItem("Theme", "dark");
+  document.querySelector("table").classList.add("table-" + theme);
+  document.getElementById("theme").value = theme;
 }
 
-function gettingData() {
+document.getElementById("name").addEventListener("click",function () {
+  if (!reversedName) {
+    data = JSON.parse(localStorage.getItem("data")).reverse();
+  }else{
+    data = JSON.parse(localStorage.getItem("data")).reverse().reverse();
+  }
+  getData(data)
+  if (reversedName) {
+    reversedName = false;
+  }else{
+    reversedName = true;
+  }
+})
+
+
+document.getElementById("population").addEventListener("click",function () {
+  var data = JSON.parse(localStorage.getItem("data"))
+  if (!reversedpopulation) {
+    data.sort((a,b) => a.population - b.population)
+    reversedpopulation = true;
+  }else{
+    data.sort((a,b) => b.population - a.population)
+    reversedpopulation = false;
+  }
+  getData(data)
+})
+
+document.getElementById("region").addEventListener("click",function () {
+  var data = JSON.parse(localStorage.getItem("data"))
+  if (!reversedRegion) {
+    reversedRegion = true
+    data.sort(function(a,b){
+      regionA = a.region.toUpperCase()
+      regionB = b.region.toUpperCase()
+      if (regionA<regionB) {
+        return -1
+      }
+      if(regionA>regionB){
+        return 1
+      }
+      return 0
+    })
+  }else{
+    reversedRegion = false
+    data.sort(function(a,b){
+      regionA = a.region.toUpperCase()
+      regionB = b.region.toUpperCase()
+      if (regionA<regionB) {
+        return 1
+      }
+      if(regionA>regionB){
+        return -1
+      }
+      return 0
+    })
+  }
+  getData(data)
+})
+
+document.getElementById("search").addEventListener("keyup",function() {
+  const search = this.value;
+  console.log(search);
+  data = search.length > 0 ? JSON.parse(localStorage.getItem("data")).filter(function(country){
+    return country.name.toLowerCase().includes(search) || country.name.toUpperCase().includes(search);
+  }):JSON.parse(localStorage.getItem("data"));
+  getData(data);
+})
+
+async function gettingData() {
+  var data = [];
   if (localStorage.getItem("data") != null) {
-    getData(JSON.parse(localStorage.getItem("data")));
+    data = JSON.parse(localStorage.getItem("data"));
   } else {
-    fetch("https://restcountries.eu/rest/v2/all")
+    await fetch("https://restcountries.eu/rest/v2/all")
     .then((res) => {
       return res.json();
     })
     .then((resData) => {
       localStorage.setItem("data", JSON.stringify(resData));
-      getData(resData);
+      data = resData;
     });
   }
+  getData(data);
 }
 
 function getData(data) {
@@ -180,9 +163,9 @@ function buy(countryName) {
 
 function countingCart() {
   if (localStorage.getItem("cart")!==null) {
-    $("#count-cart").html(JSON.parse(localStorage.getItem("cart")).length)
+    document.getElementById("count-cart").innerHTML = JSON.parse(localStorage.getItem("cart")).length
   }else{
-    $("#count-cart").html(0)
+    document.getElementById("count-cart").innerHTML = 0;
   }
 }
 
@@ -198,12 +181,12 @@ function cartList() {
         <button class="btn btn-sm btn-outline-danger" onclick="deleteCartItem(${index})">Delete</button>
     </li>`;
       }
-      $("#cart-list").html(cartList)
+      document.getElementById("cart-list").innerHTML = cartList;
     }else{
-      $("#cart-list").html(`<li><h3 class="p-4">Your Cart is empty</h3></li>`)
+      document.getElementById("cart-list").innerHTML = `<li><h3 class="p-4">Your Cart is empty</h3></li>`;
     }
   }else{
-    $("#cart-list").html(`<li><h3 class="p-4">Your Cart is empty</h3></li>`)
+    document.getElementById("cart-list").innerHTML = `<li><h3 class="p-4">Your Cart is empty</h3></li>`;
   }
 }
 
@@ -220,15 +203,13 @@ function deleteCartItem(index) {
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px */
 function openNav() {
   document.getElementById("mySidenav").style.width = "320px";
-  // document.getElementById("main").style.marginRight = "320px";
-  document.getElementById("main").style.opacity = "0.8";
+  document.querySelector("body").style.backgroundColor = "#000";
+  document.getElementById("main").style.opacity = "0.5";
 }
 
 /* Set the width of the side navigation to 0 and the left margin of the page content to 0 */
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
-  // document.getElementById("main").style.marginRight = "0";
   document.getElementById("main").style.opacity = "1";
+  document.querySelector("body").style.backgroundColor = "";
 }
-
-// document.getElementById("mySidenav").appendChild("");
